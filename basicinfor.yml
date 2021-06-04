@@ -1,0 +1,77 @@
+---
+- name: Basic Info (Switches)
+  hosts: switches
+  gather_facts: false
+  connection: network_cli
+
+  tasks: 
+  - name: Basic Info (Switches)
+    ios_command:
+      commands: 
+      - show version | include Software
+      - show ip interface brief | include up
+      - show interface description | include up
+      - show env all
+    register: output
+
+  - name: Save output to a file on disk
+    copy: 
+        dest: "/home/justin/Basic/{{inventory_hostname}}_basic.txt"
+        content: |
+          show version | include Software
+          -----
+          {{ output.stdout[0] }}
+
+
+          show ip interface brief | include up
+          -----
+          {{ output.stdout[1] }}
+
+
+          show interface description | include up
+          -----
+          {{ output.stdout[2] }}
+
+
+          show env all
+          -----
+          {{ output.stdout[3] }}
+
+- name: Basic Info (Routers)
+  hosts: routers
+  gather_facts: false
+  connection: network_cli
+
+  tasks: 
+  - name: Basic Info (Routers)
+    ios_command:
+      commands:
+        - show version | include Software
+        - show ip interface brief | include up
+        - show interface description | include up
+        - show env all
+    register: output
+
+  - name: Save output to a file on disk
+    copy:
+        dest: "/home/justin/Basic/{{inventory_hostname}}_basic.txt"
+        content: |
+          show version | include Software
+          -----
+          {{ output.stdout[0] }}
+
+
+          show ip interface brief | include up
+          -----
+          {{ output.stdout[1] }}
+
+
+          show interface description | include up
+          -----
+          {{ output.stdout[2] }}
+
+
+          show env all
+          -----
+          {{ output.stdout[3] }}
+...

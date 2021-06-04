@@ -1,0 +1,41 @@
+---
+- name: Show Run (Switches)
+  hosts: switches
+  gather_facts: false
+  connection: network_cli
+
+  tasks: 
+  - name: Show Run (Switches)
+    ios_command:
+      commands: show run
+    register: output
+
+  - name: Print Output (Switches)
+    debug:
+      var: output.stdout_lines
+
+  - name: Save my_output to a file on disk
+    copy: # copy module
+        content: "{{output.stdout[0]}}" # Output content
+        dest: "/home/justin/Configs/Switches/{{inventory_hostname}}_show_run.txt"
+
+- name: Show Run (Routers)
+  hosts: routers
+  gather_facts: false
+  connection: network_cli
+
+  tasks: 
+  - name: Show Run (Routers)
+    ios_command:
+      commands: show run
+    register: output
+
+  - name: Print Output (Routers)
+    debug:
+      var: output.stdout_lines
+
+  - name: Save my_output to a file on disk
+    copy: # copy module
+        content: "{{output.stdout[0]}}" # Output content
+        dest: "/home/justin/Configs/Routers/{{inventory_hostname}}_show_run.txt"
+...

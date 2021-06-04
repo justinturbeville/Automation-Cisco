@@ -1,0 +1,60 @@
+---
+- name: Disabling All Interfaces
+  hosts: iosxr
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+  - name: Disable Interfaces
+    cisco.iosxr.iosxr_interfaces:
+      config:
+      - name: TenGigE0/0/0/0
+        enabled: false
+      - name: TenGigE0/0/0/1
+        enabled: false
+      - name: TenGigE0/0/0/2
+        enabled: false
+      - name: TenGigE0/0/0/3
+        enabled: false
+      - name: TenGigE0/0/0/4
+        enabled: false 
+      - name: TenGigE0/0/0/5
+        enabled: false
+      - name: TenGigE0/0/0/6
+        enabled: false
+      - name: TenGigE0/0/0/7
+        enabled: false
+      - name: TenGigE0/0/0/8
+        enabled: false
+      - name: TenGigE0/0/0/9
+        enabled: false
+      - name: TenGigE0/0/0/10
+        enabled: false
+      - name: TenGigE0/0/0/11
+        enabled: false
+      - name: TenGigE0/0/0/12
+        enabled: false
+      - name: TenGigE0/0/0/13
+        enabled: false
+      - name: TenGigE0/0/0/14
+        enabled: false 
+      - name: TenGigE0/0/0/15
+        enabled: false
+      - name: TenGigE0/0/0/16
+        enabled: false
+      - name: TenGigE0/0/0/17
+        enabled: false
+      - name: TenGigE0/0/0/18
+        enabled: false
+      - name: TenGigE0/0/0/19
+        enabled: false
+      - name: TenGigE0/0/0/20
+        enabled: false
+      - name: TenGigE0/0/0/21
+        enabled: false
+      - name: TenGigE0/0/0/22
+        enabled: false
+      - name: TenGigE0/0/0/23
+        enabled: false
+      state: merged
+...

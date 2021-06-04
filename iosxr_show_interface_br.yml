@@ -1,0 +1,17 @@
+---
+- name: Interface Information
+  hosts: iosxr
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+  - name: Show IP Interface Brief
+    iosxr_command:
+      commands:
+        - show ip interface brief
+    register: output
+
+  - name: Save ouput
+    debug:
+      var: output.stdout_lines
+...

@@ -1,0 +1,33 @@
+---
+- name: Disabling All Interfaces
+  hosts: iosxr
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+  - name: Add IP to Interfaces
+    cisco.iosxr.iosxr_l3_interfaces:
+      config:
+      - name: TenGigE0/0/0/0
+        ipv4:
+        - address: 66.158.1.254/24
+      - name: TenGigE0/0/0/1
+        ipv4:
+        - address: 66.159.1.1/24
+      - name: TenGigE0/0/0/2
+        ipv4:
+        - address: 66.159.2.1/24
+      - name: TenGigE0/0/0/3
+        ipv4:
+        - address: 66.159.3.1/24
+      - name: TenGigE0/0/0/4
+        ipv4:
+        - address: 66.159.4.1/24
+      - name: TenGigE0/0/0/5
+        ipv4:
+        - address: 66.159.5.1/24
+      - name: TenGigE0/0/0/6
+        ipv4:
+        - address: 66.159.6.1/24
+      state: merged
+...

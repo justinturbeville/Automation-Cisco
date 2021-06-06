@@ -1,3 +1,44 @@
 ---
+- name: Basic Info (Switches)
+  hosts: switches
+  gather_facts: false
+  connection: network_cli
 
+  tasks:
+  - name: Add VLANs
+    cisco.ios.ios_vlans:
+      config:
+      - name: Network_Management
+        vlan_id: 10
+        state: active
+        shutdown: enabled
+      - name: System_Management
+        vlan_id: 11
+        state: active
+        shutdown: enabled
+      - name: Data
+        vlan_id: 20
+        state: active
+        shutdown: enabled
+      - name: Data_Wireless
+        vlan_id: 21
+        state: active
+        shutdown: enabled
+      - name: Server
+        vlan_id: 30
+        state: active
+        shutdown: enabled
+      - name: Security
+        vlan_id: 40
+        state: active
+        shutdown: enabled
+      - name: Admin
+        vlan_id: 70
+        state: active
+        shutdown: enabled
+      - name: Admin_Wireless
+        vlan_id: 71
+        state: active
+        shutdown: enabled
+      state: merged
 ...

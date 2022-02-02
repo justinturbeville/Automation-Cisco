@@ -6,6 +6,11 @@
 sudo apt update && sudo apt upgrade -y
 
 # This will install ansible and the aproriate dependencies such as paramiko and some of the Cisco ansible modules.
+
+#This will uncomment this if install on RHEL based systems 
+#sudo yum install epel-release
+#sudo yum install ansible -y
+
 sudo apt installl ansible -y
 ansible-galaxy collection install cisco.ios
 ansible-galaxy collection install cisco.iosxr

@@ -3,6 +3,9 @@
   hosts: Routers
   gather_facts: false
   connection: network_cli
+  collections:
+    - cisco.ios:
+  
   tasks:
     - name: Add VLANs
       cisco.ios.ios_vlans:

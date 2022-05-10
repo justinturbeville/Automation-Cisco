@@ -1,0 +1,55 @@
+---
+- name: Base Router Config
+  hosts: Routers
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+  - name: Configure IP Address
+    cisco.ios.ios_l3_interfaces:
+      config:
+        - name: GigabitEthernet0/1
+          ipv4:
+          - address: 10.0.0.1/27
+      state: replaced
+
+  - name: Configure Interface
+    cisco.ios.ios_interfaces:
+      config:
+      - name: GigabitEthernet0/1
+        description: This is a description
+        enabled: true
+        mtu: 1300
+
+  - name: Configure NTP
+    cisco.ios.ios_ntp_global:
+      config:
+        servers:
+          - server: 192.168.15.1
+            version: 2
+            source: GigabitEthernet0/0
+
+  - name: Hostname Configuration
+    cisco.ios.ios_system:
+      hostname: Router01
+      domain_name: converged.local
+      name_servers:
+      - 192.168.15.11
+      - 192.168.15.12
+
+  - name: Configure Login Banner
+    cisco.ios.ios_banner:
+      banner: login
+      text: |
+        This is a login banner.
+      state: present
+      
+  - name: Configure Logging
+    cisco.ios.ios_logging_global:
+      config:
+        buffered:
+          severity: warnings
+        hosts:
+          - hostname: 192.168.15.190
+      state: merged
+...

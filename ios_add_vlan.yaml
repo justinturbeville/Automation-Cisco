@@ -3,14 +3,13 @@
   hosts: Routers
   gather_facts: false
   connection: network_cli
-
   tasks:
-  - name: Add VLANs
-    cisco.ios.ios_vlans:
-      config:
-      - name: Network_Management
-        vlan_id: 10
-        state: active
-        shutdown: enabled
-      state: merged
+    - name: Add VLANs
+      cisco.ios.ios_vlans:
+        config:
+          - name: Network_Management
+            vlan_id: 10
+            state: active
+            shutdown: enabled
+        state: merged
 ...

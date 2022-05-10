@@ -1,0 +1,17 @@
+---
+- name: Configure IP Address
+  hosts: Routers
+  gather_facts: false
+  connection: network_cli
+  collections:
+    - cisco.ios:
+  
+  tasks:
+    - name: Configure IP Address
+      cisco.ios.ios_l3_interfaces:
+        config:
+          - name: GigabitEthernet0/1
+            ipv4:
+            - address: 10.0.0.1/27
+        state: merged
+...

@@ -1,0 +1,36 @@
+---
+- name: Base Router Config
+  hosts: Routers
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+  - name: Remove L3 Interface Configuration
+    cisco.ios.ios_l3_interfaces:
+      config:
+      - name: GigabitEthernet0/1
+      state: deleted
+
+  - name: Remove Interface Configuration
+    cisco.ios.ios_interfaces:
+      config:
+      - name: GigabitEthernet0/1
+      state: deleted
+
+  - name: Remove NTP Configuration
+    cisco.ios.ios_ntp_global:
+      state: deleted
+
+  - name: Remove Hostname Configuration
+    cisco.ios.ios_system:
+      state: absent
+
+  - name: Remove Login Banner Configuration
+    cisco.ios.ios_banner:
+      banner: login
+      state: absent
+
+  - name: Remove Logging Configuration
+    cisco.ios.ios_logging_global:
+      state: deleted
+...

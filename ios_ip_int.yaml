@@ -7,11 +7,11 @@
     - cisco.ios:
   
   tasks:
-    - name: Configure IP Address
-      cisco.ios.ios_l3_interfaces:
-        config:
-          - name: GigabitEthernet0/1
-            ipv4:
-            - address: 10.0.0.1/27
-        state: merged
+  - name: Configure IP Address
+    cisco.ios.ios_l3_interfaces:
+      config:
+        - name: GigabitEthernet0/1
+          ipv4:
+          - address: 10.0.0.1/27
+      state: replace
 ...
